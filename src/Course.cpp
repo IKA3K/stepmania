@@ -425,8 +425,8 @@ bool Course::GetTrailUnsorted( StepsType st, CourseDifficulty cd, Trail &trail )
 	if( m_bShuffle )
 	{
 		/* Always randomize the same way per round.  Otherwise, the displayed course
-		* will change every time it's viewed, and the displayed order will have no
-		* bearing on what you'll actually play. */
+		 * will change every time it's viewed, and the displayed order will have no
+		 * bearing on what you'll actually play. */
 		tmp_entries = m_vEntries;
 		random_shuffle( tmp_entries.begin(), tmp_entries.end(), rnd );
 	}
@@ -528,8 +528,8 @@ bool Course::GetTrailUnsorted( StepsType st, CourseDifficulty cd, Trail &trail )
 			}
 
 			/* If we're not COURSE_DIFFICULTY_REGULAR, then we should be choosing steps that are
-			* either easier or harder than the base difficulty.  If no such steps exist, then
-			* just use the one we already have. */
+			 * either easier or harder than the base difficulty.  If no such steps exist, then
+			 * just use the one we already have. */
 			Difficulty dc = resolved.pSteps->GetDifficulty();
 			int iLowMeter = e->stepsCriteria.m_iLowMeter;
 			int iHighMeter = e->stepsCriteria.m_iHighMeter;
@@ -567,12 +567,12 @@ bool Course::GetTrailUnsorted( StepsType st, CourseDifficulty cd, Trail &trail )
 				}
 
 				/* Hack: We used to adjust low_meter/high_meter above while searching for
-				* songs.  However, that results in a different song being chosen for
-				* difficult courses, which is bad when LockCourseDifficulties is disabled;
-				* each player can end up with a different song.  Instead, choose based
-				* on the original range, bump the steps based on course difficulty, and
-				* then retroactively tweak the low_meter/high_meter so course displays
-				* line up. */
+				 * songs.  However, that results in a different song being chosen for
+				 * difficult courses, which is bad when LockCourseDifficulties is disabled;
+				 * each player can end up with a different song.  Instead, choose based
+				 * on the original range, bump the steps based on course difficulty, and
+				 * then retroactively tweak the low_meter/high_meter so course displays
+				 * line up. */
 				if( e->stepsCriteria.m_difficulty == Difficulty_Invalid && bChangedDifficulty )
 				{
 					/* Minimum and maximum to add to make the meter range contain the actual
@@ -727,8 +727,8 @@ void Course::GetTrailUnsortedEndless( const vector<CourseEntry> &entries, Trail 
 		}
 
 		/* If we're not COURSE_DIFFICULTY_REGULAR, then we should be choosing steps that are
-		* either easier or harder than the base difficulty.  If no such steps exist, then
-		* just use the one we already have. */
+		 * either easier or harder than the base difficulty.  If no such steps exist, then
+		 * just use the one we already have. */
 		Difficulty dc = resolved.pSteps->GetDifficulty();
 		int iLowMeter = e->stepsCriteria.m_iLowMeter;
 		int iHighMeter = e->stepsCriteria.m_iHighMeter;
@@ -770,12 +770,12 @@ void Course::GetTrailUnsortedEndless( const vector<CourseEntry> &entries, Trail 
 			}
 
 			/* Hack: We used to adjust low_meter/high_meter above while searching for
-			* songs.  However, that results in a different song being chosen for
-			* difficult courses, which is bad when LockCourseDifficulties is disabled;
-			* each player can end up with a different song.  Instead, choose based
-			* on the original range, bump the steps based on course difficulty, and
-			* then retroactively tweak the low_meter/high_meter so course displays
-			* line up. */
+			 * songs.  However, that results in a different song being chosen for
+			 * difficult courses, which is bad when LockCourseDifficulties is disabled;
+			 * each player can end up with a different song.  Instead, choose based
+			 * on the original range, bump the steps based on course difficulty, and
+			 * then retroactively tweak the low_meter/high_meter so course displays
+			 * line up. */
 			if( e->stepsCriteria.m_difficulty == Difficulty_Invalid && bChangedDifficulty )
 			{
 				/* Minimum and maximum to add to make the meter range contain the actual
@@ -917,9 +917,9 @@ const Style *Course::GetCourseStyle( const Game *pGame, int iNumPlayers ) const
 	for( int s=0; s < (int) vpStyles.size(); ++s ) 
 	{
 		const Style *pStyle = vpStyles[s];
-		FOREACHS_CONST( RString, m_setStyles, style )
+		for (RString const &style : m_setStyles)
 		{
-			if( !style->CompareNoCase(pStyle->m_szName) )
+			if( !style.CompareNoCase(pStyle->m_szName) )
 				return pStyle;
 		}
 	}
