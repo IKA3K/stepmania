@@ -808,7 +808,7 @@ void Course::GetTrailUnsortedEndless( const vector<CourseEntry> &entries, Trail 
 		te.iHighMeter = iHighMeter;
 
 		/* If we chose based on meter (not difficulty), then store Difficulty_Invalid, so
-		* other classes can tell that we used meter. */
+		 * other classes can tell that we used meter. */
 		if( e->stepsCriteria.m_difficulty == Difficulty_Invalid )
 		{
 			te.dc = Difficulty_Invalid;
@@ -914,9 +914,8 @@ const Style *Course::GetCourseStyle( const Game *pGame, int iNumPlayers ) const
 	vector<const Style*> vpStyles;
 	GAMEMAN->GetCompatibleStyles( pGame, iNumPlayers, vpStyles );
 
-	for( int s=0; s < (int) vpStyles.size(); ++s ) 
+	for (Style const *pStyle : vpStyles)
 	{
-		const Style *pStyle = vpStyles[s];
 		for (RString const &style : m_setStyles)
 		{
 			if( !style.CompareNoCase(pStyle->m_szName) )
