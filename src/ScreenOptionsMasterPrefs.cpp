@@ -260,9 +260,9 @@ static void cache_display_resolution_list()
 static void DisplayResolutionChoices( vector<RString> &out )
 {
 	cache_display_resolution_list();
-	FOREACHS_CONST( DisplayResolution, display_resolution_list, iter )
+	for (DisplayResolution const &display : display_resolution_list)
 	{
-		RString s = ssprintf("%dx%d", iter->iWidth, iter->iHeight);
+		RString s = ssprintf("%dx%d", display.iWidth, display.iHeight);
 		out.push_back( s );
 	}
 }
@@ -586,9 +586,9 @@ static void DisplayResolutionM( int &sel, bool ToSel, const ConfOption *pConfOpt
 	if(res_choices.empty())
 	{
 		cache_display_resolution_list();
-		FOREACHS_CONST(DisplayResolution, display_resolution_list, iter)
+		for (DisplayResolution const &display : display_resolution_list)
 		{
-			res_choices.push_back(res_t(iter->iWidth, iter->iHeight));
+			res_choices.push_back(res_t(display.iWidth, display.iHeight));
 		}
 	}
 
