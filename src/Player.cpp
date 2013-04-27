@@ -233,10 +233,10 @@ float Player::GetWindowSeconds( TimingWindow tw )
 
 Player::Player( NoteData &nd, bool bVisibleParts ) : m_NoteData(nd)
 {
-	m_drawing_notefield_board= false;
+	m_drawing_notefield_board = false;
 	m_bLoaded = false;
-	m_inside_lua_set_life= false;
-	m_oitg_zoom_mode= false;
+	m_inside_lua_set_life = false;
+	m_oitg_zoom_mode = false;
 
 	m_pPlayerState = NULL;
 	m_pPlayerStageStats = NULL;
@@ -2652,11 +2652,11 @@ void Player::UpdateJudgedRows()
 			*m_pIterUnjudgedMineRows= iter;
 		}
 
-		FOREACHS( RageSound *, setSounds, s )
+		for (RageSound *sound : setSounds)
 		{
 			// Only play one copy of each mine sound at a time per player.
-			(*s)->Stop();
-			(*s)->Play(false);
+			sound->Stop();
+			sound->Play(false);
 		}
 	}
 }
