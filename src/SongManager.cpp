@@ -634,7 +634,7 @@ RString SongManager::GetCourseGroupBannerPath( const RString &sCourseGroup ) con
 
 void SongManager::GetCourseGroupNames( vector<RString> &AddTo ) const
 {
-	for (std::pair<RString const &, CourseGroupInfo &> const &iter : m_mapCourseGroupToInfo)
+	for (std::pair<RString const, CourseGroupInfo> const &iter : m_mapCourseGroupToInfo)
 		AddTo.push_back( iter.first );
 }
 
@@ -646,7 +646,7 @@ bool SongManager::DoesCourseGroupExist( const RString &sCourseGroup ) const
 RageColor SongManager::GetCourseGroupColor( const RString &sCourseGroup ) const
 {
 	int iIndex = 0;
-	for (std::pair<RString const &, CourseGroupInfo &> const &iter : m_mapCourseGroupToInfo)
+	for (std::pair<RString const, CourseGroupInfo> const &iter : m_mapCourseGroupToInfo)
 	{
 		if( iter.first == sCourseGroup )
 			return SONG_GROUP_COLOR.GetValue( iIndex%NUM_SONG_GROUP_COLORS );
