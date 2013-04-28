@@ -31,7 +31,7 @@ void Foreground::LoadFromSong( const Song *pSong )
 	TEXTUREMAN->SetDefaultTexturePolicy( RageTextureID::TEX_VOLATILE );
 
 	m_pSong = pSong;
-	FOREACH_CONST( BackgroundChange, pSong->GetForegroundChanges(), bgc )
+	for (BackgroundChange const &change : pSong->GetForegroundChanges())
 	{
 		const BackgroundChange &change = *bgc;
 		RString sBGName = change.m_def.m_sFile1,
