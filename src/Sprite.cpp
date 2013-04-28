@@ -14,6 +14,7 @@
 #include "Foreach.h"
 #include "LuaBinding.h"
 #include "LuaManager.h"
+#include <numeric>
 
 REGISTER_ACTOR_CLASS( Sprite );
 
@@ -794,9 +795,9 @@ void Sprite::SetState( int iNewState )
 void Sprite::RecalcAnimationLengthSeconds()
 {
 	m_animation_length_seconds = 0;
-	FOREACH_CONST(State, m_States, s)
+	for (State const& s : m_States)
 	{
-		m_animation_length_seconds += s->fDelay;
+		m_animation_length_seconds += s.fDelay;
 	}
 }
 
