@@ -58,9 +58,9 @@ RageTextureManager::~RageTextureManager()
 
 void RageTextureManager::Update( float fDeltaTime )
 {
-	FOREACHM(RageTextureID, RageTexture*, m_textures_to_update, i)
+	for(std::pair<RageTextureID const &, RageTexture *> i : m_textures_to_update)
 	{
-		RageTexture* pTexture = i->second;
+		RageTexture* pTexture = i.second;
 		pTexture->Update( fDeltaTime );
 	}
 }
@@ -258,7 +258,7 @@ void RageTextureManager::DeleteTexture( RageTexture *t )
 	else
 	{
 		FAIL_M("Tried to delete a texture that wasn't in the ids by pointer list.");
-		FOREACHM( RageTextureID, RageTexture*, m_mapPathToTexture, i )
+		for (map<RageTextureID, RageTexture *>::iterator i = m_mapPathToTexture.begin(); i != m_mapPathToTexture.end(); ++i)
 		{
 			if( i->second == t )
 			{
@@ -334,9 +334,9 @@ void RageTextureManager::ReloadAll()
 	 * ton of cached data that we're not necessarily going to use. */
 	DoDelayedDelete();
 
-	FOREACHM( RageTextureID, RageTexture*, m_mapPathToTexture, i )
+	for (auto const & i : m_mapPathToTexture)
 	{
-		i->second->Reload();
+		i.second->Reload();
 	}
 
 	EnableOddDimensionWarning();
@@ -350,9 +350,9 @@ void RageTextureManager::ReloadAll()
  * associated with a different texture).  Ack. */
 void RageTextureManager::InvalidateTextures()
 {
-	FOREACHM( RageTextureID, RageTexture*, m_mapPathToTexture, i )
+	for (auto const & i : m_mapPathToTexture)
 	{
-		RageTexture* pTexture = i->second;
+		RageTexture* pTexture = i.second;
 		pTexture->Invalidate();
 	}
 }
