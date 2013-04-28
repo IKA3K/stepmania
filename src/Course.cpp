@@ -970,9 +970,9 @@ void Course::RegenerateNonFixedTrails() const
 	if( AllSongsAreFixed() )
 		return;
 
-	FOREACHM( CacheEntry, CacheData, m_TrailCache, e )
+	for (auto const & e: m_TrailCache)
 	{
-		const CacheEntry &ce = e->first;
+		const CacheEntry &ce = e.first;
 		GetTrailForceRegenCache( ce.first, ce.second );
 	}
 }
