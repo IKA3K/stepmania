@@ -253,8 +253,8 @@ void BackgroundImpl::Unload()
 
 void BackgroundImpl::Layer::Unload()
 {
-	FOREACHM( BackgroundDef, Actor*, m_BGAnimations, iter )
-		delete iter->second;
+	for (std::pair<BackgroundDef const &, Actor *> iter : m_BGAnimations)
+		delete iter.second;
 	m_BGAnimations.clear();
 	m_aBGChanges.clear();
 
@@ -488,12 +488,12 @@ void BackgroundImpl::LoadFromRandom( float fFirstBeat, float fEndBeat, const Bac
 			}
 
 			if( !bAtBeginningOfMeasure )
-			continue; // skip
+				continue; // skip
 
 			// start so that we don't create a BGChange right on top of fEndBeat
 			bool bInRange = bpms[i]->GetRow() >= iStartRow && bpms[i]->GetRow() < iEndRow;
 			if( !bInRange )
-			continue; // skip
+				continue; // skip
 
 			BackgroundDef bd = m_Layer[0].CreateRandomBGA( m_pSong, change.m_def.m_sEffect, m_RandomBGAnimations, this );
 			if( !bd.IsEmpty() )
