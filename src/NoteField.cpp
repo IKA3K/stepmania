@@ -155,8 +155,8 @@ void NoteField::CacheAllUsedNoteSkins()
 		if( unused )
 			setNoteSkinsToUnload.insert( d->first );
 	}
-	FOREACHS( RString, setNoteSkinsToUnload, s )
-		UncacheNoteSkin( *s );
+	for (RString const & skin : setNoteSkinsToUnload)
+		UncacheNoteSkin( skin );
 
 	RString sCurrentNoteSkinLower = m_pPlayerState->m_PlayerOptions.GetCurrent().m_sNoteSkin;
 	NOTESKIN->ValidateNoteSkinName(sCurrentNoteSkinLower);
@@ -574,7 +574,6 @@ void NoteField::DrawAttackText(const float beat, const Attack &attack,
 	set_text_measure_number_for_draw(beat, 1, 10, align_left,
 		RageColor(0,0.8f,0.8f,1), glow);
 	m_textMeasureNumber.SetText( attack.GetTextDescription() );
-	m_textMeasureNumber.SetXY( +GetWidth()/2.f + 10*fZoom, fYPos );
 	m_textMeasureNumber.Draw();
 }
 
