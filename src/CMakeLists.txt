@@ -92,6 +92,15 @@ else()
   add_executable("${SM_EXE_NAME}" ${SMDATA_ALL_FILES_SRC} ${SMDATA_ALL_FILES_HPP})
 endif()
 
+target_compile_features("${SM_EXE_NAME}" PUBLIC cxx_range_for)
+target_compile_features("${SM_EXE_NAME}" PUBLIC cxx_auto_type)
+target_compile_features("${SM_EXE_NAME}" PUBLIC cxx_generalized_initializers)
+target_compile_features("${SM_EXE_NAME}" PUBLIC cxx_lambdas)
+target_compile_features("${SM_EXE_NAME}" PUBLIC cxx_nullptr)
+target_compile_features("${SM_EXE_NAME}" PUBLIC cxx_raw_string_literals)
+target_compile_features("${SM_EXE_NAME}" PUBLIC cxx_right_angle_brackets)
+target_compile_features("${SM_EXE_NAME}" PUBLIC cxx_override)
+
 set_target_properties("${SM_EXE_NAME}" PROPERTIES
   OUTPUT_NAME "${SM_NAME_RELEASE}"
   RELEASE_OUTPUT_NAME "${SM_NAME_RELEASE}"
