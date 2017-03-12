@@ -33,7 +33,6 @@ void Foreground::LoadFromSong( const Song *pSong )
 	m_pSong = pSong;
 	for (BackgroundChange const &change : pSong->GetForegroundChanges())
 	{
-		const BackgroundChange &change = *bgc;
 		RString sBGName = change.m_def.m_sFile1,
 			sLuaFile = pSong->GetSongDir() + sBGName + "/default.lua",
 			sXmlFile = pSong->GetSongDir() + sBGName + "/default.xml";

@@ -912,7 +912,7 @@ void NoteField::DrawPrimitives()
 			{
 				for (Attack const &a : attacks)
 				{
-					float fBeat = timing.GetBeatFromElapsedTime(a->fStartSecond);
+					float fBeat = timing.GetBeatFromElapsedTime(a.fStartSecond);
 					if (BeatToNoteRow(fBeat) >= m_FieldRenderArgs.first_row &&
 						BeatToNoteRow(fBeat) <= m_FieldRenderArgs.last_row &&
 						IS_ON_SCREEN(fBeat))
